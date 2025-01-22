@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: user-service
+#  config:
+#    import: configserver:http://localhost:8085
+#    config:
+#      enabled: true
+
+    # Configure the message broker connection (RabbitMQ or Kafka)
+#  cloud:
+#    config:
+#      uri: http://${CONFIG_SERVER_SERVICE_SERVICE_HOST:localhost}:8085
+#    bus:
+#      enabled: true
+#      refresh:
+#        enabled: true
+#      trace:
+#        enabled: true
+#  rabbitmq:
+#    addresses: ${RABBITMQ_SERVICE_SERVICE_HOST:localhost}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}  #eureka endpoint
+    healthcheck:
+      enabled: true
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    hostname: localhost
